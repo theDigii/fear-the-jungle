@@ -34,7 +34,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preload" as="image" href="/bg-jungle-lush.webp" />
         <link rel="preload" as="image" href="/logo.webp" />
-        <link rel="preload" as="image" href="/foliage-layer.webp" />
+        <link rel="preload" as="image" href="/foliage-layer.webp" media="(min-width: 761px)" />
+        <link rel="preload" as="image" href="/foliage-layer-mobile.webp" media="(max-width: 760px)" />
       </head>
       <body>{children}</body>
     </html>

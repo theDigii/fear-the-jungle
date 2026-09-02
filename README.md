@@ -23,6 +23,11 @@ Discord invite is `DISCORD_URL` at the top of `components/Signup.tsx`.
 
 ## Hero layers
 
+The foliage layer has two plates: `foliage-layer.webp` (1536x1024) on
+screens wider than 760px and `foliage-layer-mobile.webp` (portrait, leaves
+top and bottom) below that, chosen by a `<picture>` source and preloaded
+by the same media query. Both live in Pictures/FearTheJungle/finalcut.
+
 Three stacked layers in `components/Hero.tsx`, all 1536x1024 and rendered
 with identical geometry so they stay in register:
 

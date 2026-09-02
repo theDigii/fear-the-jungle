@@ -53,7 +53,14 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="layer layer-foliage" ref={folRef}><img src="/foliage-layer.webp" alt="" fetchPriority="high" /></div>
+        <div className="layer layer-foliage" ref={folRef}>
+          {/* Portrait plate on phones (leaves top and bottom), the wide plate
+              everywhere else. The breakpoint matches globals.css. */}
+          <picture>
+            <source media="(max-width: 760px)" srcSet="/foliage-layer-mobile.webp" />
+            <img src="/foliage-layer.webp" alt="" fetchPriority="high" />
+          </picture>
+        </div>
       </section>
   );
 }
