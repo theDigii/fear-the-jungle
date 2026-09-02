@@ -1,0 +1,170 @@
+:root{
+  --bone:#b8bbc0;
+  --bone-dim:#93969b;
+  --ash:#767a80;
+  --line:#b8bbc0;
+  --hairline:rgba(184,187,192,.45);
+  --display:var(--font-display),Impact,serif;
+  --body:var(--font-body),Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;background:#000;color:var(--bone);
+  font-family:var(--body);font-size:18px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
+img{max-width:100%}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 0;
+  background:transparent;
+  border-bottom:1px solid #b8bbc0}
+.nav-logo{display:block;height:64px;width:auto;
+  filter:
+    drop-shadow(0 0 1px rgba(255,255,255,.75))
+    drop-shadow(0 0 7px rgba(255,255,255,.5))
+    drop-shadow(0 0 20px rgba(255,255,255,.28))}
+.nav-inner{width:100%;padding:0 64px;
+  display:flex;align-items:center;justify-content:space-between}
+.nav-menu{display:flex;gap:34px;align-items:center}
+.nav-menu a{font-family:var(--display);font-size:25px;font-weight:400;letter-spacing:.04em;
+  color:var(--bone);text-decoration:none;opacity:.88;transition:opacity 160ms ease}
+.nav-menu a:hover{opacity:1}
+
+/* ---------- hero ---------- */
+.hero{position:relative;width:100%;height:100svh;overflow:hidden}
+.layer{position:absolute;inset:-6%;will-change:transform;pointer-events:none}
+.layer img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
+.layer-bg{z-index:10}
+.layer-logo{z-index:20}
+.layer-foliage{z-index:40}
+
+
+.vignette{position:absolute;inset:0;z-index:15;pointer-events:none;
+  background:radial-gradient(ellipse 82% 70% at 50% 44%, rgba(0,0,0,0) 46%, rgba(0,0,0,.62) 100%)}
+
+/* fades background + hero logo into black, sits UNDER the hero text */
+.hero-fade{position:absolute;left:0;right:0;bottom:0;height:34%;z-index:25;pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,.30) 40%,
+    rgba(0,0,0,.74) 72%,
+    #000 100%)}
+
+/* foliage fades out on its own so it doesn't float over the black band.
+   layer is inset -6%, so the hero's bottom edge lands at ~95% of the layer. */
+.layer-foliage img{
+  -webkit-mask-image:linear-gradient(to bottom,#000 66%,rgba(0,0,0,0) 95%);
+  mask-image:linear-gradient(to bottom,#000 66%,rgba(0,0,0,0) 95%)}
+
+/* text sits above bg, below foliage */
+.hero-text{position:absolute;left:0;right:0;bottom:0;z-index:30;
+  display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 24px 42px}
+.tagline{margin:0;font-family:var(--display);font-size:27px;font-weight:400;
+  letter-spacing:.12em;color:var(--bone-dim)}
+.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.email{width:270px;height:50px;padding:0 15px;font:inherit;font-size:18px;color:var(--bone);
+  background:rgba(6,8,6,.66);border:1px solid var(--line);border-radius:3px;
+  backdrop-filter:blur(4px);transition:border-color 160ms ease}
+.email::placeholder{color:var(--ash)}
+.email:hover,.email:focus{border-color:#d6d9de}
+.submit{height:50px;padding:0 26px;font:inherit;font-size:18px;font-weight:600;letter-spacing:.02em;color:#0a0a0a;
+  background:var(--bone);border:1px solid var(--bone);border-radius:3px;cursor:pointer;
+  white-space:nowrap;transition:background-color 160ms ease}
+.submit:hover:not(:disabled){background:#d3d6db}
+.submit:disabled{opacity:.55;cursor:default}
+.discord{display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 22px;
+  font-size:18px;font-weight:500;color:var(--bone-dim);text-decoration:none;
+  border:1px solid var(--line);border-radius:3px;background:rgba(6,8,6,.5);
+  backdrop-filter:blur(4px);transition:color 160ms ease,border-color 160ms ease}
+.discord:hover{color:var(--bone);border-color:#d6d9de}
+.discord svg{width:19px;height:19px;flex:none}
+.note{margin:0;font-size:16px;color:var(--ash);min-height:16px;text-align:center}
+.note[data-state="error"]{color:#c46a5f}
+.note[data-state="ok"]{color:var(--bone-dim)}
+
+.scroll-cue{display:block;margin-top:6px;padding:6px;line-height:0;color:var(--bone-dim);
+  border:0;background:none;cursor:pointer;animation:bob 2.6s ease-in-out infinite;
+  transition:color 200ms ease;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.8))}
+.scroll-cue:hover{color:var(--bone)}
+.scroll-cue svg{width:60px;height:60px}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(12px);opacity:1}}
+
+/* ---------- sections ---------- */
+.wrap{width:100%;max-width:1440px;margin:0 auto;padding:0 64px}
+.section{padding:118px 0}
+.section + .section{border-top:1px solid var(--hairline)}
+.section h2{margin:0 0 32px;font-family:var(--display);font-size:64px;font-weight:400;
+  letter-spacing:.01em;line-height:1.12}
+.section p{max-width:70ch;font-size:18px;line-height:1.85;color:var(--bone-dim);margin:0 0 20px}
+
+.news-item{padding:22px 0;border-bottom:1px solid var(--hairline);
+  display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:baseline}
+.news-item:last-child{border-bottom:0}
+.news-date{font-size:16px;color:var(--ash);font-variant-numeric:tabular-nums}
+.news-body h3{margin:0 0 6px;font-size:16px;font-weight:500}
+.news-body p{margin:0;font-size:15px;line-height:1.65}
+
+.kicker{margin:0 0 14px;font-family:var(--display);font-size:26px;font-weight:400;
+  letter-spacing:.1em;color:var(--bone-dim)}
+.soon{font-family:var(--display);font-size:46px;font-weight:400;color:var(--bone);margin:0;letter-spacing:.01em}
+
+.signup{margin-top:44px;padding-top:34px;border-top:1px solid var(--hairline)}
+.signup-label{display:block;max-width:56ch;margin:0 0 20px;font-size:18px;
+  line-height:1.7;color:var(--bone-dim)}
+.signup .actions{justify-content:flex-start}
+.signup .note{text-align:left;margin-top:14px}
+
+.community{margin-top:40px;padding-top:34px;border-top:1px solid var(--hairline)}
+.community-head{margin:0 0 18px;font-family:var(--display);font-size:34px;font-weight:400;
+  letter-spacing:.02em;color:var(--bone)}
+
+.media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.shot{padding:0;border:1px solid var(--hairline);border-radius:3px;overflow:hidden;
+  background:#060606;cursor:pointer;aspect-ratio:16/10;display:block}
+.shot img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 320ms ease,opacity 320ms ease;opacity:.86}
+.shot:hover img{transform:scale(1.04);opacity:1}
+
+.lightbox{position:fixed;inset:0;z-index:90;display:none;align-items:center;
+  justify-content:center;padding:40px;background:rgba(0,0,0,.93);backdrop-filter:blur(6px)}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;
+  border:1px solid var(--hairline);border-radius:3px}
+.lightbox-close{position:absolute;top:20px;right:26px;width:38px;height:38px;
+  font:inherit;font-size:22px;line-height:1;color:var(--bone-dim);background:none;
+  border:1px solid var(--line);border-radius:3px;cursor:pointer}
+.lightbox-close:hover{color:var(--bone)}
+
+.footer{padding:60px 0 44px;border-top:1px solid var(--hairline);text-align:center}
+.primal{display:block;width:270px;height:auto;margin:0 auto 20px;opacity:.9}
+.footer small{font-size:16px;color:var(--ash);letter-spacing:0}
+
+@media (max-width:760px){
+  .nav{padding:12px 0}
+  .nav-inner{padding:0 24px}
+  .nav-logo{height:44px}
+  .nav-menu{gap:18px}
+  .nav-menu a{font-size:21px}
+  .wrap{padding:0 24px}
+  .section{padding:76px 0}
+  .section h2{font-size:44px}
+  .section p{font-size:18px}
+  .news-item{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:620px){
+  .email{width:100%;max-width:280px}
+  .actions{flex-direction:column;gap:8px}
+  .submit,.discord{width:100%;max-width:280px;justify-content:center}
+  .signup .actions{align-items:stretch}
+  .tagline{font-size:22px;letter-spacing:.1em}
+  .scroll-cue svg{width:46px;height:46px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .layer{transform:none!important}
+  .scroll-cue{animation:none}
+  *{transition-duration:.01ms!important}
+}
