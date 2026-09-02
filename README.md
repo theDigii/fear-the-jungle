@@ -35,8 +35,8 @@ with identical geometry so they stay in register:
     z-15  vignette
     z-25  hero-fade    gradient to black, sits UNDER the text
     z-20  logo         no transform, never moves
-    z-30  hero-text    tagline + chevron
     z-40  foliage      moves  -48px x / -30px y   (against the cursor)
+    z-50  hero-text    tagline + chevron, OVER the foliage
     z-60  nav
 
 Layers are inset -6% so their edges never enter frame when they shift.

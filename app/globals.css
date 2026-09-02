@@ -59,7 +59,7 @@ img{max-width:100%}
   mask-image:linear-gradient(to bottom,#000 66%,rgba(0,0,0,0) 95%)}
 
 /* text sits above bg, below foliage */
-.hero-text{position:absolute;left:0;right:0;bottom:0;z-index:30;
+.hero-text{position:absolute;left:0;right:0;bottom:0;z-index:50;
   display:flex;flex-direction:column;align-items:center;gap:16px;padding:0 24px 42px}
 .tagline{margin:0;font-family:var(--display);font-size:27px;font-weight:400;
   letter-spacing:.12em;color:var(--bone-dim)}
