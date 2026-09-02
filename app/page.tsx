@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Signup from "@/components/Signup";
+import Gallery from "@/components/Gallery";
 
 export default function Page() {
   return (
@@ -25,7 +26,7 @@ export default function Page() {
 
         <section className="section" id="media">
           <h2>Media</h2>
-          <p className="soon">Coming soon!</p>
+          <Gallery />
         </section>
 
         <footer className="footer">

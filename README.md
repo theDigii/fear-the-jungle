@@ -13,9 +13,9 @@ One-page teaser site. Next.js App Router, plain CSS, no framework.
    in Vercel project settings (and `.env.local` for dev). Without it the
    form still succeeds but only logs the address server-side.
 2. `metadataBase` in `app/layout.tsx` -> your real domain.
-3. Media: the section reads "Coming soon!" for now. The gallery component
-   and its lightbox were removed with the placeholder crops; when real
-   screenshots exist, add a grid of `public/media/*.webp` back.
+3. Media: the six gallery tiles read "Coming soon!" until there are
+   screenshots. Put them in `public/media/`, give each tile an <img>, and
+   bring the lightbox back from commit a51fbab if you want click-to-enlarge.
 4. Add an OG image. A flat 1200x630 JPG screenshot of the finished hero
    is the right call; the transparent logo composites badly on link previews.
 
