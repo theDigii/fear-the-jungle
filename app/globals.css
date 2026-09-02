@@ -133,6 +133,12 @@ img{max-width:100%}
 .footer small{font-size:16px;color:var(--ash);letter-spacing:0}
 
 @media (max-width:760px){
+  /* The hero logo plate is full-frame and cover-cropped like the other
+     layers; on a portrait screen that fills the height and clips the sides.
+     Fit it instead, narrower, centred by margin, and leave the background
+     and foliage layers alone. Register does not matter here: parallax is
+     off on coarse pointers. */
+  .layer-logo img{object-fit:contain;width:72%;height:100%;margin:0 auto}
   .media-grid{grid-template-columns:repeat(3,1fr)}
   .shot-empty .soon{font-size:16px}
   .nav{padding:12px 0}
@@ -147,6 +153,7 @@ img{max-width:100%}
   .news-item{grid-template-columns:1fr;gap:6px}
 }
 @media (max-width:620px){
+  .layer-logo img{width:82%}
   .email{width:100%;max-width:280px}
   .actions{flex-direction:column;gap:8px}
   .submit,.discord{width:100%;max-width:280px;justify-content:center}
