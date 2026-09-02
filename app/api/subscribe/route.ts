@@ -30,7 +30,17 @@ export async function POST(req: Request) {
   if (res.status === 409) return NextResponse.json({ ok: true, persisted: true });
 
   if (!res.ok) {
-    console.error("Buttondown error", res.status, await res.text());
+    const text = await res.text();
+    console.error("Buttondown error", res.status, text);
+    // Buttondown's subscriber firewall refuses an address by rule (its
+    // own account setting, not ours). Say so: "try again" is wrong advice
+    // when a retry gives the same answer.
+    if (res.status === 400 && text.includes("subscriber_blocked")) {
+      return NextResponse.json(
+        { error: "That address was refused by the mailing list. Try a different one." },
+        { status: 422 }
+      );
+    }
     return NextResponse.json(
       { error: "Couldn't sign you up. Try again in a moment." },
       { status: 502 }
