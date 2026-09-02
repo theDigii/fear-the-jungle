@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const DISCORD_URL = "https://discord.gg/your-invite";
+const DISCORD_URL = "https://discord.gg/8R8qeGDCVV";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
