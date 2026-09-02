@@ -139,7 +139,7 @@ img{max-width:100%}
      and foliage layers alone. Register does not matter here: parallax is
      off on coarse pointers. */
   .layer-logo img{object-fit:contain;width:72%;height:100%;margin:0 auto;
-    transform:scale(2);transform-origin:center center}
+    transform:scale(1.7);transform-origin:center center}
   .media-grid{grid-template-columns:repeat(3,1fr)}
   .shot-empty .soon{font-size:16px}
   .nav{padding:12px 0}
