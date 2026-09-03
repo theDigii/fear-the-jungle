@@ -21,7 +21,7 @@ const body = Spectral({
 export async function generateMetadata(): Promise<Metadata> {
   const { text } = await getSiteContent();
   return {
-    metadataBase: new URL("https://fearthejungle.com"),
+    metadataBase: new URL("https://fearthejungle.gg"),
     title: text.site_title,
     description: text.site_description,
     openGraph: {

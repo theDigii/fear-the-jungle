@@ -5,5 +5,5 @@ import type { MetadataRoute } from "next";
  * never in it, whatever gets added later — add public pages here by hand.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: "https://fearthejungle.com/", lastModified: new Date(), changeFrequency: "weekly", priority: 1 }];
+  return [{ url: "https://fearthejungle.gg/", lastModified: new Date(), changeFrequency: "weekly", priority: 1 }];
 }

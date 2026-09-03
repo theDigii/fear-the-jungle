@@ -18,6 +18,6 @@ export default function robots(): MetadataRoute.Robots {
   }
   return {
     rules: { userAgent: "*", allow: "/", disallow: ["/backend", "/backend/", "/api/"] },
-    sitemap: "https://fearthejungle.com/sitemap.xml",
+    sitemap: "https://fearthejungle.gg/sitemap.xml",
   };
 }
