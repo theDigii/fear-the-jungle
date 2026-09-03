@@ -26,6 +26,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: { card: "summary_large_image", title: "Fear the Jungle" },
+  // Not launched: keep search engines out. Remove together with app/robots.ts.
+  robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
