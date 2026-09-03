@@ -1,0 +1,60 @@
+/* The backend: plain, readable, the site's palette. No parallax, no display
+   font on body text — this is a tool, not the teaser. */
+.be{min-height:100vh;padding:0 0 80px;background:#0a0a0a;color:var(--bone)}
+.be-nav{display:flex;align-items:center;gap:26px;padding:18px 32px;border-bottom:1px solid var(--hairline);
+  font-family:var(--display);font-size:22px;letter-spacing:.02em}
+.be-nav a{color:var(--bone-dim);text-decoration:none}
+.be-nav a:hover,.be-nav a[aria-current="page"]{color:var(--bone)}
+.be-nav .be-spacer{flex:1}
+.be-nav .be-site{font-size:16px;font-family:var(--body);color:var(--ash)}
+.be-main{max-width:960px;margin:0 auto;padding:40px 32px}
+.be h1{margin:0 0 8px;font-family:var(--display);font-size:44px;font-weight:400}
+.be h2{margin:36px 0 12px;font-family:var(--display);font-size:28px;font-weight:400}
+.be p{line-height:1.55;color:var(--bone-dim)}
+.be .be-hint{font-size:15px;color:var(--ash)}
+.be-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:28px}
+.be-card{display:block;padding:22px;border:1px solid var(--hairline);border-radius:4px;color:var(--bone);text-decoration:none}
+.be-card:hover{border-color:var(--line)}
+.be-card strong{display:block;font-family:var(--display);font-size:26px;font-weight:400;margin-bottom:6px}
+.be-card span{color:var(--ash);font-size:15px}
+
+.be-form{display:flex;flex-direction:column;gap:22px}
+.be-field{display:flex;flex-direction:column;gap:6px}
+.be-field label{font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--ash)}
+.be-field small{font-size:13px;color:var(--ash)}
+.be input[type=text],.be input[type=url],.be textarea{width:100%;padding:10px 12px;font:inherit;font-size:17px;
+  color:var(--bone);background:#000;border:1px solid var(--hairline);border-radius:3px}
+.be input[type=file]{color:var(--bone-dim);font-size:15px}
+.be textarea{min-height:120px;resize:vertical;line-height:1.5}
+.be textarea.be-short{min-height:56px}
+.be input:focus,.be textarea:focus{border-color:var(--line);outline:none}
+.be-check{display:flex;align-items:center;gap:10px;color:var(--bone-dim)}
+.be-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.be-btn{height:42px;padding:0 18px;font:inherit;font-size:16px;font-weight:600;color:#0a0a0a;background:var(--bone);
+  border:1px solid var(--bone);border-radius:3px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.be-btn:hover{background:#d3d6db}
+.be-btn.be-quiet{color:var(--bone);background:none;border-color:var(--hairline)}
+.be-btn.be-quiet:hover{border-color:var(--line)}
+.be-btn.be-danger{color:#c46a5f;background:none;border-color:rgba(196,106,95,.5)}
+.be-btn.be-danger:hover{border-color:#c46a5f}
+.be-btn.be-small{height:32px;padding:0 10px;font-size:14px;font-weight:500}
+.be-msg{padding:12px 14px;border:1px solid var(--hairline);border-radius:3px;color:var(--bone-dim)}
+.be-msg[data-kind=error]{border-color:rgba(196,106,95,.6);color:#c46a5f}
+.be-msg[data-kind=ok]{border-color:rgba(120,170,120,.5);color:#8fb58f}
+
+.be-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.be-row{display:flex;align-items:center;gap:16px;padding:14px 16px;border:1px solid var(--hairline);border-radius:4px}
+.be-row .be-grow{flex:1;min-width:0}
+.be-row .be-title{display:block;color:var(--bone);text-decoration:none;font-size:18px}
+.be-row .be-title:hover{text-decoration:underline}
+.be-row .be-meta{display:block;font-size:14px;color:var(--ash);margin-top:3px}
+.be-badge{font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--hairline);
+  border-radius:3px;color:var(--ash)}
+.be-badge.be-live{color:#8fb58f;border-color:rgba(120,170,120,.5)}
+.be-thumb{width:160px;aspect-ratio:16/10;object-fit:cover;border-radius:3px;border:1px solid var(--hairline);flex:none}
+.be-inline{display:flex;gap:8px;align-items:center}
+.be-inline input[type=text]{flex:1}
+@media (max-width:640px){
+  .be-row{flex-wrap:wrap}
+  .be-thumb{width:100%}
+}

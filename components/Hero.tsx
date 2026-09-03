@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export default function Hero() {
+export default function Hero({ tagline }: { tagline: string }) {
   const bgRef = useRef<HTMLDivElement>(null);
   const folRef = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
@@ -44,7 +44,7 @@ export default function Hero() {
         <div className="layer layer-logo"><img src="/logo.webp" alt="Fear the Jungle" fetchPriority="high" /></div>
 
         <div className="hero-text">
-          <p className="tagline">In Development</p>
+          <p className="tagline">{tagline}</p>
           <a className="scroll-cue" href="#about" aria-label="Scroll to about">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
                  strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

@@ -21,6 +21,56 @@ One-page teaser site. Next.js App Router, plain CSS, no framework.
 
 Discord invite is `DISCORD_URL` at the top of `components/Signup.tsx`.
 
+## Backend (/backend)
+
+News posts, the gallery and every line of text on the page are edited at
+`/backend`. It is server-rendered forms over Neon Postgres and Vercel Blob,
+behind Clerk.
+
+### How access works
+
+1. `middleware.ts` runs ONLY on `/backend/*`. Anyone signed out is sent to
+   `/backend/sign-in`, which is Clerk's hosted form. Clerk owns the password
+   rules, rate limiting, bot detection and (if you enable it) MFA, which is
+   what makes the login un-brute-forceable.
+2. Being signed in is not enough. `lib/admin.ts` checks the account's email
+   against `BACKEND_ADMIN_EMAILS`. No list means nobody gets in. Every page
+   AND every server action runs this check.
+3. In the Clerk dashboard set sign-up mode to **Restricted** so strangers
+   cannot create accounts at all, and turn on MFA for your own account.
+4. `/backend` sends `X-Robots-Tag: noindex` from the middleware, carries a
+   noindex meta tag, is disallowed in `robots.txt`, and is never in
+   `sitemap.xml`.
+
+### Setup, once
+
+Environment variables on the Vercel project (see `.env.example`):
+
+    DATABASE_URL                       Neon connection string
+    BLOB_READ_WRITE_TOKEN              from a Vercel Blob store (Storage tab)
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY  Clerk > API keys
+    CLERK_SECRET_KEY
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/backend/sign-in
+    NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/backend
+    BACKEND_ADMIN_EMAILS               comma-separated emails allowed in
+
+The database tables are created on first use; there is no migration step.
+The public page renders its built-in text until something is saved, and
+keeps rendering it if the database is unreachable.
+
+### What the backend can change
+
+- **Text**: every key in `lib/content.ts` `TEXT_DEFAULTS`. Clearing a field
+  restores the built-in wording.
+- **News**: posts with title, plain-text body (blank line = paragraph, URLs
+  become links, HTML is never interpreted), published flag. Newest first.
+- **Gallery**: upload (JPEG/PNG/WebP/GIF/AVIF, 10 MB), caption, reorder,
+  remove. Real images come first; empty tiles up to twelve show the media
+  placeholder text.
+
+Every save calls `revalidatePath("/")`, so the public page updates within
+seconds; `app/page.tsx` also revalidates every five minutes as a ceiling.
+
 ## Hero layers
 
 The foliage layer has two plates: `foliage-layer.webp` (1536x1024) on
