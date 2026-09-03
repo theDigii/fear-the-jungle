@@ -4,23 +4,25 @@ import { configured } from "@/lib/db";
 /**
  * Every backend page starts by rendering this. It either returns null (carry
  * on) or a message explaining exactly why the page is not being shown, so a
- * misconfigured deploy tells you which env var to set instead of erroring.
+ * misconfigured deploy tells you what to fix instead of erroring.
  */
 export async function Gate(): Promise<React.ReactElement | null> {
   const check = await checkAdmin();
   if (!check.ok) {
-    if (check.reason === "no-list") {
+    if (check.reason === "multiple-users") {
       return (
         <div className="be-msg" data-kind="error">
-          Signed in as {check.email}, but BACKEND_ADMIN_EMAILS is not set on the deployment,
-          so nobody is allowed in yet. Add your email to that env var and redeploy.
+          This Clerk project holds {check.users} user accounts and the backend only works with exactly one.
+          Delete every account that is not yours in the Clerk dashboard, and set sign-up to Restricted so it
+          cannot happen again.
         </div>
       );
     }
-    if (check.reason === "not-allowed") {
+    if (check.reason === "clerk-unavailable") {
       return (
         <div className="be-msg" data-kind="error">
-          {check.email} is signed in but is not on the backend allowlist.
+          Could not reach Clerk to confirm the user count, so the backend is refusing to open. Check
+          CLERK_SECRET_KEY on the deployment and try again.
         </div>
       );
     }

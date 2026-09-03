@@ -33,9 +33,11 @@ behind Clerk.
    `/backend/sign-in`, which is Clerk's hosted form. Clerk owns the password
    rules, rate limiting, bot detection and (if you enable it) MFA, which is
    what makes the login un-brute-forceable.
-2. Being signed in is not enough. `lib/admin.ts` checks the account's email
-   against `BACKEND_ADMIN_EMAILS`. No list means nobody gets in. Every page
-   AND every server action runs this check.
+2. Being signed in is not enough. `lib/admin.ts` asks Clerk how many user
+   accounts the project holds and only opens the backend when the answer is
+   exactly one. A second account, however it got there, locks everyone out
+   with a message saying so. Every page AND every server action runs this
+   check.
 3. In the Clerk dashboard set sign-up mode to **Restricted** so strangers
    cannot create accounts at all, and turn on MFA for your own account.
 4. `/backend` sends `X-Robots-Tag: noindex` from the middleware, carries a
@@ -52,7 +54,6 @@ Environment variables on the Vercel project (see `.env.example`):
     CLERK_SECRET_KEY
     NEXT_PUBLIC_CLERK_SIGN_IN_URL=/backend/sign-in
     NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/backend
-    BACKEND_ADMIN_EMAILS               comma-separated emails allowed in
 
 The database tables are created on first use; there is no migration step.
 The public page renders its built-in text until something is saved, and
