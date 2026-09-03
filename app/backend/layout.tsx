@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ClerkProvider, SignedIn, UserButton } from "@clerk/nextjs";
+import { ClerkProvider, Show, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import "./backend.css";
 
@@ -25,9 +25,9 @@ export default function BackendLayout({ children }: { children: React.ReactNode 
           <Link href="/backend/gallery">Gallery</Link>
           <span className="be-spacer" />
           <a className="be-site" href="/" target="_blank" rel="noopener noreferrer">View site</a>
-          <SignedIn>
+          <Show when="signed-in">
             <UserButton />
-          </SignedIn>
+          </Show>
         </nav>
         <main className="be-main">{children}</main>
       </div>

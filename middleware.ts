@@ -1,4 +1,4 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 /**
@@ -17,10 +17,10 @@ import { NextResponse } from "next/server";
  * Every /backend response also carries X-Robots-Tag, so the section stays
  * out of search results whatever robots.txt says.
  */
-const isSignIn = createRouteMatcher(["/backend/sign-in(.*)"]);
-
 export default clerkMiddleware(async (auth, req) => {
-  if (!isSignIn(req)) await auth.protect();
+  // Clerk 7 deprecates createRouteMatcher; the path test is a one-liner.
+  const isSignIn = req.nextUrl.pathname.startsWith("/backend/sign-in");
+  if (!isSignIn) await auth.protect();
   const res = NextResponse.next();
   res.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
   return res;
