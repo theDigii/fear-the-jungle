@@ -1,7 +1,9 @@
 /* Fear the Jungle newsletter. Paste into Buttondown > Settings > Design > Custom CSS.
    Mirrors app/globals.css: black ground, bone text, Metal Mania display, Spectral body.
-   Apple Mail, iOS Mail and most webmail honour this; Outlook desktop and Gmail's
-   image-blocked view fall back to the inline styles in header.html / footer.html. */
+   The header and footer fields take Markdown only, so their styling lives here:
+   h6 is reserved for the kicker and the footer link line, h5 for the fine print,
+   and the two images are targeted by their src. Apple Mail, iOS Mail and most
+   webmail honour this; clients that drop <style> get plain Markdown on black. */
 
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap');
 
@@ -84,7 +86,29 @@ a.btn {
   text-decoration: none;
 }
 
-/* Header and footer hooks (classes set in header.html / footer.html). */
-.ftj-kicker { color: #93969b; }
-.ftj-links a { color: #b8bbc0; text-decoration: none; }
-.ftj-fine, .ftj-fine a { color: #767a80; }
+/* Header and footer (Markdown fields). h6 = kicker and footer links, h5 = fine print. */
+h6 {
+  font-family: 'Metal Mania', Impact, 'Arial Narrow', serif;
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #93969b;
+  margin: 6px 0 20px;
+}
+h6 a { color: #b8bbc0; text-decoration: none; }
+
+h5 {
+  font-family: Spectral, Georgia, serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: center;
+  color: #767a80;
+  margin: 14px 0 30px;
+}
+h5 a { color: #93969b; }
+
+img[src$="/email/logo.png"]   { display: block; margin: 22px auto 10px; width: 300px; max-width: 100%; }
+img[src$="/email/primal.png"] { display: block; margin: 6px auto 0; width: 120px; }
