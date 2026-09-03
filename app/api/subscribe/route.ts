@@ -21,10 +21,25 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, persisted: false });
   }
 
+  // Buttondown's firewall judges the request's origin. Without the visitor's
+  // IP every signup looks like one server (ours, on Vercel) submitting other
+  // people's addresses, which is the bot pattern it blocks. Pass the visitor
+  // through so the firewall sees them, not us.
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    req.headers.get("x-real-ip") ||
+    undefined;
+  const referrer = req.headers.get("referer") || undefined;
+
   const res = await fetch("https://api.buttondown.com/v1/subscribers", {
     method: "POST",
     headers: { Authorization: `Token ${key}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ email_address: email, tags: ["playtest"] }),
+    body: JSON.stringify({
+      email_address: email,
+      tags: ["playtest"],
+      ...(ip ? { ip_address: ip } : {}),
+      ...(referrer ? { referrer_url: referrer } : {}),
+    }),
   });
 
   if (res.status === 409) return NextResponse.json({ ok: true, persisted: true });
