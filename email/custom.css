@@ -1,0 +1,90 @@
+/* Fear the Jungle newsletter. Paste into Buttondown > Settings > Design > Custom CSS.
+   Mirrors app/globals.css: black ground, bone text, Metal Mania display, Spectral body.
+   Apple Mail, iOS Mail and most webmail honour this; Outlook desktop and Gmail's
+   image-blocked view fall back to the inline styles in header.html / footer.html. */
+
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap');
+
+body, .email, .email-body, .body, table, td {
+  background-color: #000000 !important;
+}
+
+body, .email-body, .body, p, li, td {
+  color: #b8bbc0;
+  font-family: Spectral, Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: 'Metal Mania', Impact, 'Arial Narrow', serif;
+  font-weight: 400;
+  letter-spacing: .06em;
+  color: #b8bbc0;
+  margin: 28px 0 12px;
+  line-height: 1.15;
+}
+h1 { font-size: 36px; }
+h2 { font-size: 27px; }
+h3 { font-size: 22px; color: #93969b; }
+
+p  { margin: 0 0 18px; }
+ul, ol { margin: 0 0 18px; padding-left: 22px; }
+li { margin: 0 0 6px; }
+
+a {
+  color: #d6d9de;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+strong { color: #d6d9de; font-weight: 600; }
+em { color: #93969b; }
+
+hr {
+  border: 0;
+  border-top: 1px solid #4f5256;
+  margin: 28px 0;
+}
+
+blockquote {
+  margin: 0 0 18px;
+  padding: 2px 0 2px 16px;
+  border-left: 2px solid #767a80;
+  color: #93969b;
+  font-style: italic;
+}
+
+img { max-width: 100%; height: auto; }
+
+code, pre {
+  font-family: Consolas, Menlo, monospace;
+  font-size: 15px;
+  color: #d6d9de;
+  background: #0c0c0c;
+  border: 1px solid #4f5256;
+  border-radius: 3px;
+}
+code { padding: 1px 5px; }
+pre  { padding: 12px 14px; overflow-x: auto; }
+
+/* A call-to-action button: write <a class="btn" href="...">Join the Discord</a> in the body.
+   Matches the site's .submit button. */
+a.btn {
+  display: inline-block;
+  padding: 13px 26px;
+  background: #b8bbc0;
+  color: #0a0a0a !important;
+  font-family: Spectral, Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+/* Header and footer hooks (classes set in header.html / footer.html). */
+.ftj-kicker { color: #93969b; }
+.ftj-links a { color: #b8bbc0; text-decoration: none; }
+.ftj-fine, .ftj-fine a { color: #767a80; }
