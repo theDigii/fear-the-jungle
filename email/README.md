@@ -9,7 +9,7 @@ pieces plus two images the site serves.
 |---|---|---|
 | `custom.css` | Settings > Design > Custom CSS | fonts via `@import`; falls back to Impact / Georgia |
 | `header.html` | Settings > Design > Header | inline styles carry it where the CSS is dropped |
-| `footer.html` | Settings > Design > Footer | replace `DISCORD_INVITE`; keep `{{ unsubscribe_url }}` |
+| `footer.html` | Settings > Design > Footer | keep `{{ unsubscribe_url }}` |
 | `public/email/logo.png` | referenced by the header | the nav logo with the site's white glow baked in, on black, because email cannot do `drop-shadow` |
 | `public/email/primal.png` | referenced by the footer | the studio wordmark as PNG (WebP does not render in Outlook) |
 
