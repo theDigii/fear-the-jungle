@@ -22,7 +22,7 @@ export const TEXT_DEFAULTS = {
   signup_button: "Sign up",
   community_head: "Join our Discord Community!",
   discord_label: "Join the Discord",
-  discord_url: "https://discord.gg/8R8qeGDCVV",
+  discord_url: "https://discord.gg/Msv9nVaQuJ",
   footer_copy: "© 2026 Primal Interactive. All rights reserved.",
 } as const;
 
